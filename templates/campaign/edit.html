@@ -5,14 +5,65 @@
 {% endblock %}
 
 {% block content %}
-<form method="post">
-    {{ form.csrf_token }}
-    {{ form.campaign_id(value=id) }}
-    <p>{{ form.name.label }} {{ form.name }}</p>
-    <p>{{ form.description.label }} {{ form.description }}</p>
-    <p>{{ form.image.label }} {{ form.image }}</p>
-    <p>{{ form.amount_requested.label }} {{ form.amount_requested }}</p>
+<v-container edit-campaign elevation-12>
+    <v-layout row>
+        <v-flex xs-6>
+            <v-img src="{{ form.image.data }}" aspect-ratio="3.5"></v-img>
+        </v-flex>
+    </v-layout>
 
-    <input type="submit">
-</form>
+    <form id = "edit-campagin" method="post">
+        {{ form.csrf_token }}
+        {{ form.campaign_id (value = id) }}
+        <v-spacer></v-spacer>
+
+        <v-layout row>
+            <v-flex xs-6>
+                <v-text-field
+                    label = "{{ form.name.label.text }}"
+                    id = "{{ form.name.name }}"
+                    name = "{{ form.name.name }}"
+                    value="{{ form.name.data }}"
+                ></v-text-field>
+            </v-flex>
+        </v-layout>
+        <v-layout row>
+            <v-flex xs-6>
+                <v-textarea
+                    label = "{{ form.description.label.text }}"
+                    id = "{{ form.description.name }}"
+                    name = "{{ form.description.name }}"
+                    value = "{{ form.description.data }}"
+                ></v-textarea>
+            </v-flex>
+        </v-layout>
+
+        <v-layout row>
+            <v-flex xs-6>
+                <v-text-field
+                    label = "{{ form.image.label.text }}"
+                    id = "{{ form.image.name }}"
+                    name = "{{ form.image.name }}"
+                    value = "{{ form.image.data }}"
+                ></v-text-field>
+            </v-flex>
+        </v-layout>
+        <v-layout row>
+            <v-flex xs-6>
+                <v-text-field
+                    label = "{{ form.amount_requested.label.text }}"
+                    id = "{{ form.amount_requested.name }}"
+                    name="{{ form.amount_requested.name }}"
+                    value="{{ form.amount_requested.data }}">
+                </v-text-field>
+            </v-flex>
+        </v-layout>
+
+        <v-layout row>
+            <v-flex xs-6>
+                <v-btn type="submit">Submit</v-btn>
+            </v-flex>
+        </v-layout>
+    </form>
+</v-container>
 {% endblock %}
